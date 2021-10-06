@@ -1,0 +1,19 @@
+{
+  "root": "/home/alfa/solid-alfa/data",
+  "port": "8443",
+  "serverUri": "https://localhost:8443",
+  "webid": true,
+  "mount": "/",
+  "configPath": "./config",
+  "configFile": "./config.json",
+  "dbPath": "./.db",
+  "sslKey": "/home/alfa/server.key",
+  "sslCert": "/home/alfa/server.crt",
+  "multiuser": false,
+  "server": {
+    "name": "localhost",
+    "description": "",
+    "logo": ""
+  }
+}
+
