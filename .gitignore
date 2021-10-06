@@ -1,7 +1,4 @@
-client/node-modules/*
-app/node-modules/*
-app/.cache
-app/dist
+.vscode
 .db
 config
 solid-alfa
