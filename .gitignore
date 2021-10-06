@@ -1,0 +1,11 @@
+client/node-modules/*
+app/node-modules/*
+app/.cache
+app/dist
+.db
+config
+solid-alfa
+solid-alice
+solid-bob
+solid-charlie
+solid-dan
