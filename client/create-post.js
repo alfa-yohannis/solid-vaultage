@@ -1,29 +1,38 @@
 import { SolidNodeClient } from 'solid-node-client';
 import * as $rdf from 'rdflib';
+import FAIRNET from '@ymp/fairnet';
 
 const client = new SolidNodeClient();
 const store = $rdf.graph();
 const fetcher = new $rdf.Fetcher(store, {fetch:client.fetch.bind(client)});
 const updater = new $rdf.UpdateManager(store);
-const VCARD = new $rdf.Namespace('http://www.w3.org/2006/vcard/ns#');;
+
+const VCARD = new $rdf.Namespace('http://www.w3.org/2006/vcard/ns#');
+const FAIRNET2 = new $rdf.Namespace('https://alfa.solidcommunity.net/public/voc/fairnet.ttl#');
+const RDF = new $rdf.Namespace('http://www.w3.org/1999/02/22-rdf-syntax-ns#');
+const RDFS = new $rdf.Namespace('http://www.w3.org/2000/01/rdf-schema#');
+const OWL = new $rdf.Namespace('http://www.w3.org/2002/07/owl#');
+const THIS  = new $rdf.Namespace('https://alfa.solidcommunity.net/public/posts#');
 
 const me = store.sym('https://alfa.solidcommunity.net/profile/card#me');
-const profile = me.doc();
+const posts = store.sym('https://alfa.solidcommunity.net/public/posts');
+const postsDoc = posts.doc();
 
+let post = FAIRNET.Post;
 
-async function setName(person, name, doc) {
-  let ins = $rdf.st(person, VCARD('fn'), name, doc)
-  let del = []
-  updater.update(del, ins, (uri, ok, message) => {
-    if (ok) {
-      console.log(uri);
-      console.log('Name changed to ' + name);
-    }
-    else {
-      console.log(message);
-    }
-  });
-}
+// async function setName(person, name, doc) {
+//   let ins = $rdf.st(FAIRNET2(':p1'), FAIRNET2('title'), name, doc)
+//   let del = []
+//   updater.update(del, ins, (uri, ok, message) => {
+//     if (ok) {
+//       console.log(uri);
+//       console.log('Name changed to ' + name);
+//     }
+//     else {
+//       console.log(message);
+//     }
+//   });
+// }
 
 let credential = {
   idp: "https://solidcommunity.net",
@@ -34,7 +43,22 @@ let credential = {
 let session = await client.login(credential); 
   if (session.isLoggedIn) {
     console.log(session);
-    setName(me, "HAHAHA", profile);
+    
+    store.add(THIS("post01"), RDF("type"), FAIRNET2('Post'), postsDoc);
+    store.add(THIS("post01"), FAIRNET2("title"), 'Title-01', postsDoc);
+    store.add(THIS("post01"), FAIRNET2("content"), "Content-01", postsDoc);
+    store.add(THIS("post01"), FAIRNET2("ownedBy"), me, postsDoc);
+
+    store.add(THIS("post02"), RDF("type"), FAIRNET2('Post'), postsDoc);
+    store.add(THIS("post02"), FAIRNET2("title"), 'Title-02', postsDoc);
+    store.add(THIS("post02"), FAIRNET2("content"), "Content-02", postsDoc);
+    store.add(THIS("post02"), FAIRNET2("ownedBy"), me, postsDoc);
+    
+    console.log($rdf.serialize(posts, store, postsDoc.uri, 'text/turtle'));
+    fetcher.putBack(posts);
+    console.log("Finished!");
+
+    // setName(me, "XOXOXOXO", profile);
 }
 
 // import { SolidNodeClient } from 'solid-node-client';
