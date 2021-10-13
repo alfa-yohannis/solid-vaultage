@@ -4,6 +4,12 @@ comunica-sparql-solid --idp https://solidcommunity.net/ \
        ?s ?p ?o
    } LIMIT 100"
 
+comunica-sparql-solid --idp https://solidcommunity.net/ \
+  https://alfa.solidcommunity.net/public/posts \
+  "SELECT * WHERE {
+       ?s ?p ?o
+   } LIMIT 100"
+
 comunica-sparql-solid --idp https://localhost:8443/ \
   https://localhost:8443/profile/card#me \
   "SELECT * WHERE {
