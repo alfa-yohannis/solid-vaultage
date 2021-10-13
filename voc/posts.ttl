@@ -1,0 +1,8 @@
+@prefix : <#>.
+@prefix fairnet: <http://localhost:8443/public/voc/fairnet> .
+@prefix me: <http://localhost:8443> .
+
+:myPost a fairnet:Post ;
+    fairnet:ownedBy me: ;
+    fairnet:title "Post 01" ;
+    fairnet:content "Content of Post 01".

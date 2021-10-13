@@ -1,0 +1,52 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix fairnet: <http://alfa.solidcommunity.net/public/voc/fairnet.ttl#> .
+
+fairnet: rdf:type owl:Ontology ;
+    # Descriptiona
+    dcterms:title "Post ontology" ;
+    dcterms:description """
+    The fairnet ontology aims at describing fairnet and post.
+    """ ;
+    vann:preferredNamespacePrefix "fairnet" ;
+    vann:preferredNamespaceURI <http://alfa.solidcommunity.net/public/voc/fairnet.ttl#> ;
+    # Ownership
+    dcterms:license <http://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:creator <https://alfa.solidcommunity.net/profile/card#me> ;
+    dcterms:contributor <https://alfa.solidcommunity.net/profile/card#me> ;
+    # dcterms:publisher <https://jcaesar.solid.community/profile/organizations/spqr.ttl#spqr>;
+    # Version
+    # owl:versionIRI <http://localhost:8443/public/voc/fairnet/2019/10/09/ns> ;
+    # owl:priorVersion <http://localhost:8443/public/voc/fairnet/2019/10/08/ns> ;
+    # dcterms:isReplacedBy <http://localhost:8443/public/voc/fairnet/2019/10/08/ns> ;
+    owl:versionInfo "0.1.0" ;
+    dcterms:issued "2021-10-09" ;
+    dcterms:modified "2021-10-09".
+
+fairnet:Post a rdfs:Class ;
+    rdfs:label "Post"@en ;
+    rdfs:comment "A post is something that its creator posted on a social network service."@en .
+
+fairnet:ownedBy a owl:ObjectProperty ;
+    rdfs:label "owned by"@en ;
+    rdfs:comment "Relationship between a post and the person who created and posted it."@en ;
+    rdfs:domain fairnet:Post ;
+    rdfs:range foaf:Person .
+
+fairnet:title a owl:DatatypeProperty ;
+    rdfs:label "title"@en ;
+    rdfs:comment "The title of the post."@en ;
+    rdfs:domain fairnet:Post ;
+    rdfs:range xsd:string.
+
+fairnet:content a owl:DatatypeProperty ;
+    rdfs:label "content"@en ;
+    rdfs:comment "The content of the post."@en ;
+    rdfs:domain fairnet:Post ;
+    rdfs:range xsd:string.
+

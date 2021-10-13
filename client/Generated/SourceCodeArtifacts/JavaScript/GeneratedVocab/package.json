@@ -1,0 +1,11 @@
+{
+  "name": "@ymp/fairnet",
+  "version": "1.0.0",
+  "description": "Test creating package for Fairnet",
+  "main": "FAIRNET.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alfa Yohannis",
+  "license": "MIT"
+}
