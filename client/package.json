@@ -1,6 +1,7 @@
 {
   "type": "module",
   "dependencies": {
+    "@comunica/actor-init-sparql": "^1.22.2",
     "@inrupt/artifact-generator": "^1.0.4",
     "@inrupt/generate-oidc-token": "^0.1.3",
     "@rdfjs/data-model": "^1.3.4",
